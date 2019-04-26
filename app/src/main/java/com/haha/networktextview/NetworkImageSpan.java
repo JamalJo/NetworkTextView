@@ -89,7 +89,7 @@ public class NetworkImageSpan extends DynamicDrawableSpan implements DeferredRel
             fm.descent = 0;
 
             fm.top = fm.ascent;
-            fm.bottom = rect.bottom ;
+            fm.bottom = rect.bottom;
         }
         return rect.right + mMargin.left + mMargin.right;
     }
@@ -110,7 +110,6 @@ public class NetworkImageSpan extends DynamicDrawableSpan implements DeferredRel
     }
 
     public void onDetach() {
-        mImgUrl = null;
         if (mDataSource != null && !mDataSource.isClosed()) {
             mDataSource.close();
         }
@@ -119,7 +118,7 @@ public class NetworkImageSpan extends DynamicDrawableSpan implements DeferredRel
     }
 
     public void setImgUrl(String imgUrl) {
-        if (imgUrl == mImgUrl) { // 重复imgUrl的情况下，不需要重新请求
+        if (TextUtils.equals(imgUrl, mImgUrl)) { // 重复imgUrl的情况下，不需要重新请求
             return;
         }
         reset();
